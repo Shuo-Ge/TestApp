@@ -86,13 +86,12 @@
                 </div>
             </div>
         </div>
-
+        <h3>未到人数</h3>
         <div class="noPeople">
-            <h3>未到人数</h3>
+
 
             <table class="layui-hide" id="test"></table>
             <script type="text/html" id="barDemo">
-              <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
               <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             </script>
         </div>
@@ -128,11 +127,11 @@
             table.render({
                 elem: '#test'
                 , url: './js/data.json'
-                , cellMinWidth: 120 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , height: 330
                 , cols: [[
                     { field: 'id', width: 120, title: 'ID', sort: true }
                     , { field: 'username', width: 120, title: '用户名' },
-                    { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150 }
+                    { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 170 }
                 ]]
             });
         });
