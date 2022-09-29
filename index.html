@@ -91,6 +91,10 @@
             <h3>未到人数</h3>
 
             <table class="layui-hide" id="test"></table>
+            <script type="text/html" id="barDemo">
+              <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+              <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
         </div>
     </div>
     <div class="food_nav">
@@ -121,29 +125,17 @@
 
         layui.use('table', function () {
             var table = layui.table;
-
             table.render({
                 elem: '#test'
                 , url: './js/data.json'
-                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                , parseData: function (res) { //res 即为原始返回的数据
-                    console.log(res.data);
-                    return {
-                        "code": res.status, //解析接口状态
-                        "msg": res.message, //解析提示文本
-                        "count": res.total, //解析数据长度
-                        "data": res.data //解析数据列表
-                    };
-                }
+                , cellMinWidth: 120 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
                 , cols: [[
-                    { field: 'id', width: 80, title: 'ID', sort: true }
-                    , { field: 'username', width: 80, title: '用户名' }
+                    { field: 'id', width: 120, title: 'ID', sort: true }
+                    , { field: 'username', width: 120, title: '用户名' },
+                    { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150 }
                 ]]
             });
-            console.log(table);
         });
-
-
 
 
         layui.use(['upload', 'element', 'layer'], function () {
@@ -151,13 +143,6 @@
                 , upload = layui.upload
                 , element = layui.element
                 , layer = layui.layer;
-
-
-
-
-
-
-
             //指定允许上传的文件类型
             upload.render({
                 elem: '#test3'
@@ -168,19 +153,6 @@
                     console.log(res);
                 }
             });
-
-
-
-            //绑定原始文件域
-            upload.render({
-                elem: '#test20'
-                , url: '' //此处配置你自己的上传接口即可
-                , done: function (res) {
-                    layer.msg('上传成功');
-                    console.log(res)
-                }
-            });
-
         });
     </script>
 </body>
